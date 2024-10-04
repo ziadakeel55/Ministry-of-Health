@@ -115,8 +115,18 @@ function verifyAndClickView() {
                     foundMatch = true;
                     console.log("Clicked the View button for referral ID:", referralID);
 
-                    // Start monitoring the Accept button after clicking View
-                    monitorAcceptButton();
+                    // Check for the Accept button immediately after clicking View
+                    setTimeout(() => {
+                        const acceptButton = document.getElementById("accept");
+                        if (!acceptButton) {
+                            console.log("'Accept' button not found. Refreshing the page...");
+                            location.reload(); // Refresh the page if Accept button is not found
+                        } else {
+                            console.log("'Accept' button found. Monitoring...");
+                            // Start monitoring the Accept button after clicking View
+                            monitorAcceptButton();
+                        }
+                    }, 100); // Wait a bit before checking for the Accept button
 
                     // Check for the 15-minute message after clicking the View button
                     setTimeout(checkFor15MinuteMessage, 100); // Reduced delay for faster checking
@@ -216,7 +226,7 @@ function monitorCloseButton() {
 // Start the appropriate function based on the current page
 window.addEventListener('load', function() {
     // Create the Auto Login button only if we are on the Index page
-    if (window.location.href.includes("Index.cfm") || window.location.href.includes("purchasingprogramsaudi.com") && !window.location.href.includes("attach.cfm")) {
+    if (window.location.href.includes("Index.cfm") || (window.location.href.includes("purchasingprogramsaudi.com") && !window.location.href.includes("attach.cfm"))) {
         createLoginButton();
     }
     // Execute link checking and clicking for the Index page
@@ -230,4 +240,4 @@ window.addEventListener('load', function() {
     monitorCloseButton();
 });
 
-window.addEventListener('resize', positionButtonTopLeft);
+window.addEventListener('resize', positionButtonTopLeft); // Adjust button position on window resize
