@@ -73,11 +73,22 @@ button#saveButton {
 button#refreshButton {
     background-color: #007bff;
     color: white;
-    width: 100%; /* Full width */
+    width: 48%; /* Half width */
 }
 
 button#refreshButton:hover {
     background-color: #0056b3;
+}
+
+/* New styles for Open Attachments button */
+button#openAttach {
+    background-color: #28a745; /* Green background */
+    color: white;
+    width: 48%; /* Same width as refresh button */
+}
+
+button#openAttach:hover {
+    background-color: #218838;
 }
 
 /* Message fade-in animation */

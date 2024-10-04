@@ -97,9 +97,9 @@ function verifyAndClickView() {
                     viewButton.click();
                     foundMatch = true;
                     console.log("Clicked the View button for referral ID:", referralID);
-                    
-                    // Start monitoring for Link documents or waiting message after View click
-                    monitorDocumentButtons();
+
+                    // Check for Accept button
+                    monitorAcceptButton();
 
                     // Check for the 15-minute message after clicking the View button
                     setTimeout(checkFor15MinuteMessage, 100); // Reduced delay for faster checking
@@ -133,35 +133,34 @@ function checkFor15MinuteMessage() {
     }
 }
 
-// Function to monitor for "Link documents" or "View documents" and handle changes
-function monitorDocumentButtons() {
-    const linkDocumentsButton = document.querySelector("a[onclick*='attach.cfm']");
+// Function to check for the Accept button and handle it
+function monitorAcceptButton() {
+    const acceptButton = document.getElementById("accept");
 
-    if (linkDocumentsButton) {
-        linkDocumentsButton.click();
-        console.log("Clicked the 'Link documents' button.");
+    if (acceptButton) {
+        acceptButton.click();
+        console.log("Clicked the 'Accept' button.");
     } else {
-        const viewDocumentsButton = document.querySelector("a[onclick*='view.cfm']");
-
-        if (viewDocumentsButton) {
-            console.log("Found 'View documents' button, refreshing the page quickly...");
-
-            // Refresh the page immediately
+        console.log("'Accept' button not found, refreshing page...");
+        setTimeout(() => {
             location.reload(); // Refresh the page
-        } else {
-            const waitingMessage = document.body.textContent.includes("You still have to wait");
-
-            if (waitingMessage) {
-                console.log("Found waiting message, refreshing page...");
-                setTimeout(() => {
-                    location.reload(); // Refresh the page
-                }, 100); // Reduced delay before refresh
-            } else {
-                console.log("'Link documents' or 'View documents' buttons not found, retrying...");
-                setTimeout(monitorDocumentButtons, 100); // Retry after a shorter delay
-            }
-        }
+        }, 100); // Reduced delay before refresh
     }
+}
+
+// Function to automatically monitor for the Close button and click it whenever it appears
+function monitorCloseButton() {
+    const closeButton = document.querySelector("button.ui-button.ui-corner-all.ui-widget");
+
+    if (closeButton) {
+        closeButton.click();
+        console.log("Clicked the Close button.");
+    } else {
+        console.log("Close button not found, checking again...");
+    }
+
+    // Keep checking for the Close button every 100ms
+    setTimeout(monitorCloseButton, 100); // Reduced delay for faster checking
 }
 
 // Function to fill the form after navigating to attach.cfm
@@ -193,6 +192,9 @@ window.addEventListener('load', function() {
     } else if (window.location.href.includes("attach.cfm")) {
         fillForm();
     }
+
+    // Start monitoring for the Close button on any page
+    monitorCloseButton();
 });
 
 window.addEventListener('resize', positionButtonTopLeft);
