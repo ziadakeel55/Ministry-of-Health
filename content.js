@@ -79,6 +79,23 @@ function checkAndClick() {
     }
 }
 
+// Function to monitor for the Accept button and handle it continuously
+function monitorAcceptButton() {
+    const acceptButton = document.getElementById("accept");
+
+    if (acceptButton) {
+        acceptButton.click();
+        console.log("Clicked the 'Accept' button.");
+
+        // After 1 second, check again if the Accept button still exists
+        setTimeout(monitorAcceptButton, 1000); // Recheck after 1 second
+    } else {
+        console.log("'Accept' button not found, checking again in 1 second...");
+        // Retry after 1 second if the button is not found
+        setTimeout(monitorAcceptButton, 1000);
+    }
+}
+
 // Function to verify the referral ID and click the View button if it matches
 function verifyAndClickView() {
     // Get the stored referral ID from chrome.storage
@@ -98,7 +115,7 @@ function verifyAndClickView() {
                     foundMatch = true;
                     console.log("Clicked the View button for referral ID:", referralID);
 
-                    // Check for Accept button
+                    // Start monitoring the Accept button after clicking View
                     monitorAcceptButton();
 
                     // Check for the 15-minute message after clicking the View button
@@ -133,34 +150,35 @@ function checkFor15MinuteMessage() {
     }
 }
 
-// Function to check for the Accept button and handle it
-function monitorAcceptButton() {
-    const acceptButton = document.getElementById("accept");
+// Function to monitor for "Link documents" or "View documents" and handle changes
+function monitorDocumentButtons() {
+    const linkDocumentsButton = document.querySelector("a[onclick*='attach.cfm']");
 
-    if (acceptButton) {
-        acceptButton.click();
-        console.log("Clicked the 'Accept' button.");
+    if (linkDocumentsButton) {
+        linkDocumentsButton.click();
+        console.log("Clicked the 'Link documents' button.");
     } else {
-        console.log("'Accept' button not found, refreshing page...");
-        setTimeout(() => {
+        const viewDocumentsButton = document.querySelector("a[onclick*='view.cfm']");
+
+        if (viewDocumentsButton) {
+            console.log("Found 'View documents' button, refreshing the page quickly...");
+
+            // Refresh the page immediately
             location.reload(); // Refresh the page
-        }, 100); // Reduced delay before refresh
+        } else {
+            const waitingMessage = document.body.textContent.includes("You still have to wait");
+
+            if (waitingMessage) {
+                console.log("Found waiting message, refreshing page...");
+                setTimeout(() => {
+                    location.reload(); // Refresh the page
+                }, 100); // Reduced delay before refresh
+            } else {
+                console.log("'Link documents' or 'View documents' buttons not found, retrying...");
+                setTimeout(monitorDocumentButtons, 100); // Retry after a shorter delay
+            }
+        }
     }
-}
-
-// Function to automatically monitor for the Close button and click it whenever it appears
-function monitorCloseButton() {
-    const closeButton = document.querySelector("button.ui-button.ui-corner-all.ui-widget");
-
-    if (closeButton) {
-        closeButton.click();
-        console.log("Clicked the Close button.");
-    } else {
-        console.log("Close button not found, checking again...");
-    }
-
-    // Keep checking for the Close button every 100ms
-    setTimeout(monitorCloseButton, 100); // Reduced delay for faster checking
 }
 
 // Function to fill the form after navigating to attach.cfm
@@ -178,6 +196,21 @@ function fillForm() {
         console.log("Form elements not found, retrying...");
         setTimeout(fillForm, 100); // Retry after shorter delay
     }
+}
+
+// Function to start monitoring the Close button and handle it
+function monitorCloseButton() {
+    const closeButton = document.querySelector("button.ui-button.ui-corner-all.ui-widget");
+
+    if (closeButton) {
+        closeButton.click();
+        console.log("Clicked the Close button.");
+    } else {
+        console.log("Close button not found, checking again...");
+    }
+
+    // Keep checking for the Close button every 100ms
+    setTimeout(monitorCloseButton, 100); // Reduced delay for faster checking
 }
 
 // Start the appropriate function based on the current page
