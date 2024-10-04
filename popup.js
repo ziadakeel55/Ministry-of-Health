@@ -113,6 +113,16 @@ document.addEventListener('DOMContentLoaded', function() {
         window.close();
     });
 
+    // Open Attachments link functionality
+    document.getElementById('openAttach').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        window.open(
+            'https://www.purchasingprogramsaudi.com/common/attach.cfm',
+            'attachWindow',
+            'width=600,height=500,resizable=yes,scrollbars=yes'
+        );
+    });
+
     // Check for updates button functionality
     document.getElementById('checkForUpdates').addEventListener('click', function() {
         checkVersion(); // Directly check the version
