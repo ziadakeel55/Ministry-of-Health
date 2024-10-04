@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral ID Popup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="closeButton" class="close-btn">&times;</button>
+    <div class="logo-container">
+        <a href="https://www.purchasingprogramsaudi.com/Index.cfm" target="_blank">
+            <img src="icon/MOHlogo.png" alt="Logo" class="logo" />
+        </a>
+    </div>
+    <h1>Referral ID</h1>
+    <input type="text" id="referralInput" placeholder="Enter Referral ID">
+    <div class="button-group">
+        <button id="saveButton" class="animated-button">Save</button>
+        <button id="clearButton" class="animated-button">Clear</button>
+    </div>
+    <button id="refreshButton" class="animated-button">Refresh</button>
+    
+    <div class="auto-refresh-container">
+        <label class="auto-refresh-label">Auto Refresh</label>
+        <label class="switch">
+            <input type="checkbox" id="autoRefreshToggle">
+            <span class="slider"></span>
+        </label>
+        <input type="number" id="autoRefreshTime" placeholder="Seconds" min="1">
+    </div>
+
+    <div id="savedMessage">Referral ID saved successfully!</div>
+    <div id="lastUpdated" style="font-size: 14px; color: #555;">Last updated: Not saved yet</div>
+    
+    <div class="footer">
+        <a href="https://www.purchasingprogramsaudi.com/Index.cfm" target="_blank">Visit Purchasing Program Saudi</a>
+        <br>
+        <a href="https://www.purchasingprogramsaudi.com/common/attach.cfm" target="_blank">Open Attachments</a>
+    </div>
+    <div class="footer-info">
+        Developed by Dr-Abdullatif Algushy
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

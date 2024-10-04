@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Ministry of Health",
+  "version": "100",
+  "description": "Automates actions for the Ministry of Health website",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "icons": {
+    "16": "/icon/MOHlogo.png",
+    "48": "/icon/MOHlogo.png",
+    "128": "/icon/MOHlogo.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "/icon/MOHlogo.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.purchasingprogramsaudi.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://www.purchasingprogramsaudi.com/*"
+  ]
+}
