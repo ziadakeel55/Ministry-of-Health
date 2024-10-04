@@ -7,41 +7,37 @@
 
 body {
     font-family: 'Roboto', Arial, sans-serif;
-    padding: 20px;
-    width: 350px;
-    border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(135deg, #f3e6ff, #e6f3ff, #ffe6f3); /* Dynamic gradient background */
-    animation: gradient 10s ease infinite; /* Animate the gradient */
+    padding: 10px; /* Reduced padding */
+    width: 300px; /* Reduced width */
+    border-radius: 8px; /* Slightly reduced border radius */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #f3e6ff, #e6f3ff, #ffe6f3);
+    animation: gradient 10s ease infinite;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    position: relative;
 }
 
 @keyframes gradient {
     0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }
 
 h1 {
-    font-size: 22px;
+    font-size: 18px; /* Reduced font size */
     color: #4A4A4A;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reduced margin */
     text-align: center;
 }
 
 input[type="text"] {
     width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 20px;
+    padding: 8px; /* Reduced padding */
+    margin-bottom: 10px; /* Reduced margin */
     border: 1px solid #dcdcdc;
-    border-radius: 8px;
-    font-size: 15px;
-    background-color: #fafafa;
-    font-weight: bold; /* Bold text for referral ID */
+    border-radius: 6px; /* Reduced border radius */
+    font-size: 14px; /* Reduced font size */
+    font-weight: bold;
     transition: all 0.3s ease;
 }
 
@@ -54,169 +50,61 @@ input[type="text"]:focus {
 
 /* Button styles */
 .animated-button {
-    padding: 10px 20px;
+    padding: 8px; /* Reduced padding */
     cursor: pointer;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 6px; /* Reduced border radius */
+    font-size: 14px; /* Reduced font size */
     font-weight: bold;
-    margin-bottom: 15px;
-    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 10px; /* Reduced margin */
     width: 48%; 
 }
 
 .animated-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    transform: translateY(-3px); /* Lift effect */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Reduced lift effect */
 }
 
 button#saveButton {
-    background-color: #6c757d; /* Darker grey */
+    background-color: #6c757d;
     color: white;
-    border: 2px solid #007bff; /* Blue border */
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-}
-
-button#saveButton:hover {
-    background-color: #5a6268; /* Darker on hover */
-    border-color: #0056b3; /* Darker blue border */
-    transform: scale(1.05); /* Slightly enlarge the button */
 }
 
 button#refreshButton {
-    background-color: #007bff; /* Bright blue */
+    background-color: #007bff;
     color: white;
-    border: 2px solid #0056b3; /* Darker blue border */
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
     width: 100%; /* Full width */
 }
 
 button#refreshButton:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    border-color: #004085; /* Darker border */
-    transform: scale(1.05); /* Slightly enlarge the button */
+    background-color: #0056b3;
 }
 
 /* Message fade-in animation */
 #savedMessage {
     color: green;
-    font-size: 14px;
-    margin-top: 15px;
-    display: none; /* Initially hidden */
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    background-color: #333;
-    padding: 5px 10px;
-    border-radius: 4px;
-    text-align: center;
+    font-size: 12px; /* Reduced font size */
+    display: none;
 }
 
-.fade-in {
-    animation: fadeIn 0.5s forwards; /* Add fade-in animation */
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Footer and other styles remain the same */
+/* Footer styles */
 .footer {
-    margin-top: 20px;
-    font-size: 12px;
-    color: #888;
-    text-align: center;
-}
-
-.footer a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.footer a:hover {
-    text-decoration: underline;
-}
-
-.footer-info {
-    margin-top: 10px;
-    color: black;
-    font-weight: bold; /* Make footer text bold */
-    font-size: 10px; /* Small font size */
-    text-align: left;
-    width: 100%;
+    margin-top: 10px; /* Reduced margin */
+    font-size: 10px; /* Reduced font size */
 }
 
 /* Logo styling */
 .logo {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
-    animation: pulse 1.2s infinite ease-in-out; /* Removed greenFlash from animation */
-    position: relative; /* Needed for the border effect */
-}
-
-/* Moving border effect */
-.logo::before {
-    content: '';
-    position: absolute;
-    top: -5px; /* Adjusts border position */
-    left: -5px; /* Adjusts border position */
-    right: -5px; /* Adjusts border position */
-    bottom: -5px; /* Adjusts border position */
-    border: 2px solid transparent;
-    border-radius: 50%; /* Makes it a circle */
-    background: linear-gradient(0deg, #a2e8a2, #4caf50, #388e3c, #1b5e20, #a2e8a2); /* Gradient for the border using shades of green */
-    background-size: 400%; /* Needed for animation */
-    animation: borderMove 4s linear infinite; /* Animation for border movement */
-    z-index: -1; /* Places the border behind the image */
-}
-
-@keyframes borderMove {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 100% 50%;
-    }
-}
-
-/* Pulsating effect for the logo */
-@keyframes pulse {
-    0% {
-        transform: scale(1); /* Original size */
-        filter: drop-shadow(0 0 5px #a2e8a2);
-    }
-    50% {
-        transform: scale(1.1); /* Slightly enlarged size */
-        filter: drop-shadow(0 0 15px #4caf50); /* Increase the glow effect */
-    }
-    100% {
-        transform: scale(1); /* Back to original size */
-        filter: drop-shadow(0 0 5px #a2e8a2);
-    }
+    width: 40px; /* Reduced size */
+    height: 40px; /* Reduced size */
 }
 
 /* Close button */
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    font-size: 18px;
-    font-weight: bold;
-    color: #888;
-    cursor: pointer;
-}
-
-.close-btn:hover {
-    color: #333;
+    top: 5px; /* Adjusted position */
+    right: 5px; /* Adjusted position */
+    font-size: 16px; /* Reduced font size */
 }
 
 /* Buttons group */
@@ -230,88 +118,26 @@ button#refreshButton:hover {
 .auto-refresh-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #dcdcdc;
-    border-radius: 8px;
-    background-color: #f0f0f0;
-}
-
-/* Auto-refresh label */
-.auto-refresh-label {
-    font-size: 16px;
-    color: #333;
+    margin-top: 5px; /* Reduced margin */
 }
 
 /* Toggle switch */
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 34px;
-    height: 20px;
-    margin-right: 10px; /* Space between toggle and input */
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 12px;
-    width: 12px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: #28a745;
-}
-
-input:checked + .slider:before {
-    transform: translateX(14px);
+    width: 30px; /* Reduced width */
+    height: 16px; /* Reduced height */
 }
 
 /* Time input */
 #autoRefreshTime {
-    width: 60px; /* Adjust width of input */
-    padding: 5px;
-    margin-left: 10px; /* Space between toggle and input */
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 50px; /* Adjust width of input */
+    padding: 4px; /* Reduced padding */
 }
 
+/* Check for updates button */
 #checkForUpdates {
-    background-color: green; /* Green background color */
-    color: white; /* White text color */
-    font-size: 12px; /* Normal text size */
-    padding: 2px 5px; /* Small padding to fit text */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Change cursor on hover */
-    display: inline-block; /* Ensure button size matches text */
-}
-
-#checkForUpdates:hover {
-    background-color: darkgreen; /* Change color on hover */
+    background-color: green;
+    color: white;
+    font-size: 10px; /* Reduced font size */
+    padding: 2px 4px; /* Reduced padding */
 }

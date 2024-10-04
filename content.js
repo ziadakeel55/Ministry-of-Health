@@ -55,39 +55,6 @@ function fillAndSubmitLogin() {
     }
 }
 
-// Function to create and style the floating Refresh button
-function createRefreshButton() {
-    if (document.getElementById('floatingRefreshButton')) return;
-
-    const button = document.createElement('button');
-    button.id = 'floatingRefreshButton';
-    button.innerText = 'Refresh';
-    button.style.position = 'fixed';
-    button.style.backgroundColor = 'blue';
-    button.style.color = 'white';
-    button.style.border = 'none';
-    button.style.borderRadius = '5px';
-    button.style.padding = '10px 20px';
-    button.style.fontSize = '16px';
-    button.style.cursor = 'pointer';
-    button.style.zIndex = '1000';
-    button.style.boxShadow = '0px 4px 8px rgba(0, 0, 0, 0.5)';
-    button.style.opacity = '0.9';
-    button.style.top = '10px'; // Position at the top
-    button.style.right = '10px'; // Position at the right
-
-    button.style.transition = 'transform 0.2s'; // Faster transition
-    button.onmouseover = () => button.style.transform = 'scale(1.1)';
-    button.onmouseout = () => button.style.transform = 'scale(1)';
-
-    document.body.appendChild(button);
-
-    // Add event listener to the Refresh button
-    button.addEventListener('click', () => {
-        location.reload(); // Refresh the page
-    });
-}
-
 // Function to check span value and click required links
 function checkAndClick() {
     const spanElement = document.getElementById("spfnc_waiting_confirmation_referral");
@@ -219,7 +186,6 @@ window.addEventListener('load', function() {
     // Create the Auto Login button only if we are on the Index page
     if (window.location.href.includes("Index.cfm") || window.location.href.includes("purchasingprogramsaudi.com") && !window.location.href.includes("attach.cfm")) {
         createLoginButton();
-        createRefreshButton(); // Only create refresh button on Index page
     }
     // Execute link checking and clicking for the Index page
     if (window.location.href.includes("Index.cfm")) {
