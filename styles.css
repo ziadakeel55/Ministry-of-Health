@@ -245,12 +245,6 @@ button#refreshButton:hover {
     color: #333;
 }
 
-/* Auto-refresh group */
-.auto-refresh-group {
-    display: flex;
-    align-items: center;
-}
-
 /* Toggle switch */
 .switch {
     position: relative;
@@ -308,16 +302,16 @@ input:checked + .slider:before {
 }
 
 #checkForUpdates {
-    background-color: green; /* لون الخلفية أخضر */
-    color: white; /* لون النص أبيض */
-    font-size: 12px; /* حجم النص عادي */
-    padding: 2px 5px; /* حواف الزر صغيرة لتتناسب مع النص */
-    border: none; /* إزالة الحدود */
-    border-radius: 5px; /* جعل الزر ذو زوايا دائرية */
-    cursor: pointer; /* تغيير شكل المؤشر عند المرور فوق الزر */
-    display: inline-block; /* التأكد من أن الزر يأخذ حجم النص */
+    background-color: green; /* Green background color */
+    color: white; /* White text color */
+    font-size: 12px; /* Normal text size */
+    padding: 2px 5px; /* Small padding to fit text */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    display: inline-block; /* Ensure button size matches text */
 }
 
 #checkForUpdates:hover {
-    background-color: darkgreen; /* تغيير اللون عند التحويم */
+    background-color: darkgreen; /* Change color on hover */
 }
