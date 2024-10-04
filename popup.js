@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         chrome.storage.local.set({ referralNumber: referralInputValue, lastUpdated: new Date().toLocaleString() }, function() {
-            console.log('Referral Number saved:', referralInputValue);
             savedMessage.style.display = 'block';
             savedMessage.style.opacity = 1;
             savedMessage.classList.add('fade-in');
@@ -51,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('clearButton').addEventListener('click', function() {
         referralInput.value = '';
         chrome.storage.local.remove(['referralNumber', 'lastUpdated'], function() {
-            console.log('Referral Number cleared.');
             lastUpdated.innerText = 'Last updated: Not saved yet';
         });
     });
@@ -91,14 +89,12 @@ document.addEventListener('DOMContentLoaded', function() {
             autoRefreshToggle.checked = false; // Uncheck the toggle if invalid time is provided
             return;
         }
-        
-        // Using fetch or XMLHttpRequest to load content without full page reload
+
         autoRefreshInterval = setInterval(() => {
             chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
                 chrome.scripting.executeScript({
                     target: { tabId: tabs[0].id },
                     function: () => {
-                        // Remove unnecessary resources to speed up reload
                         let resources = document.querySelectorAll('img,iframe,script');
                         resources.forEach(resource => resource.remove());
                         location.reload();
@@ -116,4 +112,41 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('closeButton').addEventListener('click', function() {
         window.close();
     });
+
+    // Check for updates button functionality
+    document.getElementById('checkForUpdates').addEventListener('click', function() {
+        checkVersion(); // Directly check the version
+    });
+
+    function checkVersion() {
+        // Fetch local version from manifest
+        const manifest = chrome.runtime.getManifest();
+        const localVersion = manifest.version;
+
+        // Fetch remote manifest from GitHub
+        fetch('https://raw.githubusercontent.com/ziadakeel55/Ministry-of-Health/main/manifest.json')
+            .then(response => response.json())
+            .then(remoteManifest => {
+                const remoteVersion = remoteManifest.version;
+
+                // Compare versions and take action if they differ
+                if (localVersion !== remoteVersion) {
+                    // Automatically download the ZIP file
+                    const zipUrl = 'https://github.com/ziadakeel55/Ministry-of-Health/archive/refs/heads/main.zip';
+                    const anchor = document.createElement('a');
+                    anchor.href = zipUrl;
+                    document.body.appendChild(anchor);
+                    anchor.click();
+                    document.body.removeChild(anchor);
+
+                    alert('A new version has been downloaded. Please extract the ZIP file and load it as an unpacked extension.');
+                } else {
+                    alert('Your extension is already up to date.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching remote manifest:', error);
+                alert('Failed to check for updates.');
+            });
+    }
 });

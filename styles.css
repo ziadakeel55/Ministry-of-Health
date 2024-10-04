@@ -306,3 +306,18 @@ input:checked + .slider:before {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+#checkForUpdates {
+    background-color: green; /* لون الخلفية أخضر */
+    color: white; /* لون النص أبيض */
+    font-size: 12px; /* حجم النص عادي */
+    padding: 2px 5px; /* حواف الزر صغيرة لتتناسب مع النص */
+    border: none; /* إزالة الحدود */
+    border-radius: 5px; /* جعل الزر ذو زوايا دائرية */
+    cursor: pointer; /* تغيير شكل المؤشر عند المرور فوق الزر */
+    display: inline-block; /* التأكد من أن الزر يأخذ حجم النص */
+}
+
+#checkForUpdates:hover {
+    background-color: darkgreen; /* تغيير اللون عند التحويم */
+}
