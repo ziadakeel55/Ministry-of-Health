@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Referral ID Popup</title>
+    <title>Popup</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,19 +13,7 @@
             <img src="icon/MOHlogo.png" alt="Logo" class="logo" />
         </a>
     </div>
-    <h1>Referral ID</h1>
-    <input type="text" id="referralInput" placeholder="Enter Referral ID">
-    
-    <div class="button-group">
-        <button id="saveButton" class="animated-button">Save</button>
-        <button id="clearButton" class="animated-button">Clear</button>
-    </div>
-    
-    <div class="button-group">
-        <button id="refreshButton" class="animated-button">Refresh</button>
-        <button id="openAttach" class="animated-button">Open Attachments</button>
-    </div>
-    
+
     <div class="auto-refresh-container">
         <label class="auto-refresh-label">Auto Refresh</label>
         <label class="switch">
@@ -35,9 +23,9 @@
         <input type="number" id="autoRefreshTime" placeholder="Seconds" min="1">
     </div>
 
-    <div id="savedMessage">Referral ID saved successfully!</div>
-    <div id="lastUpdated" style="font-size: 14px; color: #555;">Last updated: Not saved yet</div>
-    
+    <button id="refreshButton" class="animated-button">Refresh</button>
+    <button id="openAttach" class="animated-button">Open Attachments</button>
+
     <div class="footer-info">
         <button id="checkForUpdates" class="animated-button" style="float: right;">Check for updates</button>
         <div>Developed by Dr-Abdullatif Algushy</div>
