@@ -23,13 +23,6 @@ body {
     100% { background-position: 100% 50%; }
 }
 
-h1 {
-    font-size: 18px;
-    color: #4A4A4A;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
 /* Button styles */
 .animated-button {
     padding: 8px;
@@ -39,21 +32,12 @@ h1 {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 10px;
-    width: 48%; 
+    width: 100%; /* Button width to full */
     transition: background-color 0.3s, transform 0.3s; /* Added transition for smoother effects */
 }
 
 .animated-button:hover {
     transform: translateY(-2px);
-}
-
-button#refreshButton {
-    background-color: #007bff;
-    color: white;
-}
-
-button#refreshButton:hover {
-    background-color: #0056b3;
 }
 
 /* New styles for Open Attachments button */
@@ -66,16 +50,10 @@ button#openAttach:hover {
     background-color: #218838;
 }
 
-/* Footer styles */
-.footer-info {
-    margin-top: 10px;
-    font-size: 10px;
-}
-
 /* Logo styling */
 .logo {
-    width: 60px; /* Increased logo size */
-    height: 60px; /* Increased logo size */
+    width: 120px; /* Increased logo size */
+    height: auto; /* Maintain aspect ratio */
 }
 
 /* Close button */
@@ -84,47 +62,4 @@ button#openAttach:hover {
     top: 5px;
     right: 5px;
     font-size: 16px;
-}
-
-/* Buttons group */
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-/* Auto-refresh container */
-.auto-refresh-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-top: 5px;
-}
-
-/* Toggle switch */
-.switch {
-    width: 30px;
-    height: 16px;
-}
-
-/* Time input */
-.auto-refresh-input {
-    width: 60px; /* Adjust width of input */
-    padding: 4px;
-    margin-left: 5px; /* Space between input and label */
-}
-
-/* Auto-refresh status */
-.auto-refresh-status {
-    margin-left: 5px; /* Space between input and status text */
-    font-weight: bold; /* Bold status text */
-    color: #555; /* Status text color */
-}
-
-/* Check for updates button */
-#checkForUpdates {
-    background-color: green;
-    color: white;
-    font-size: 10px;
-    padding: 2px 4px;
 }

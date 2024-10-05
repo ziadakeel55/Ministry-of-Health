@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Ministry of Health",
-  "version": "1.9",
+  "version": "1.8",
   "description": "Automates actions for the Ministry of Health website",
   "permissions": [
     "activeTab",
@@ -21,14 +21,13 @@
     "service_worker": "background.js"
   },
   "host_permissions": [
-    "<all_urls>", // يسمح للامتداد بالوصول إلى جميع الروابط
-    "https://www.purchasingprogramsaudi.com/*" // يحدد الموقع المطلوب
+    "https://www.purchasingprogramsaudi.com/*" // يحدد الموقع المطلوب فقط
   ],
   "content_scripts": [
     {
       "matches": ["https://www.purchasingprogramsaudi.com/*"], // يحدد المواقع لـ content.js
       "js": ["content.js"],
-      "run_at": "document_end" // يمكنك تحديد وقت التشغيل حسب الحاجة
+      "run_at": "document_end"
     }
   ]
 }
