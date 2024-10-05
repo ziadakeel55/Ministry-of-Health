@@ -55,6 +55,37 @@ function observeViewDocuments() {
     observer.observe(document.body, { childList: true, subtree: true });
 }
 
+// Function to observe for "Link documents" text and refresh a specific tab
+let hasRefreshedSpecificTab = false; // Track if the specific tab has already been refreshed
+
+function observeLinkDocuments() {
+    const observer = new MutationObserver(() => {
+        const linkDocumentsText = Array.from(document.querySelectorAll("a")).find(link => link.textContent.trim() === "Link documents");
+
+        if (linkDocumentsText && !hasRefreshedSpecificTab) {
+            console.log("Found 'Link documents' text. Requesting to refresh the specific tab.");
+            refreshSpecificTab(); // Refresh the specific tab
+            hasRefreshedSpecificTab = true; // Mark that the tab has been refreshed
+            observer.disconnect(); // Stop observing once the condition is met
+        } else {
+            console.log("'Link documents' text not found or tab already refreshed.");
+        }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+
+// Function to refresh the specific tab
+function refreshSpecificTab() {
+    chrome.runtime.sendMessage({ action: "refreshTab" }, (response) => {
+        if (response && response.success) {
+            console.log("Specific tab refreshed successfully.");
+        } else {
+            console.log("Failed to refresh specific tab.");
+        }
+    });
+}
+
 // Function to fill the form after navigating to attach.cfm
 function fillForm() {
     const titleInput = document.getElementById("Title");
@@ -64,11 +95,17 @@ function fillForm() {
         titleInput.value = "Al Salalm Hospital Acceptance"; // Update the Title value
         console.log("Filled Title input with 'Al Salalm Hospital Acceptance'.");
 
-        typeSelect.value = "11"; // Select option 11 (Acceptance)
-        console.log("Selected option 11 (Acceptance) in Type dropdown.");
+        // Select option 11 in the dropdown (Acceptance)
+        const optionToSelect = typeSelect.querySelector("option[value='11']");
+        if (optionToSelect) {
+            typeSelect.value = "11"; // Select option 11 (Acceptance)
+            console.log("Selected option 11 (Acceptance) in Type dropdown.");
+        } else {
+            console.log("Option 11 not found in the dropdown.");
+        }
     } else {
         console.log("Form elements not found, retrying...");
-        setTimeout(fillForm, 100); // Retry after shorter delay
+        setTimeout(fillForm, 1000); // Retry after a short delay if the form elements are not found
     }
 }
 
@@ -105,6 +142,15 @@ window.addEventListener('load', function() {
     // Check and click the waiting confirmation link
     checkAndClickWaitingConfirmation(); // Call the function to check and click
 
+    // Start observing for View and Link documents after page load
+    observeViewDocuments(); // Observe for 'View documents' text
+    observeLinkDocuments(); // Observe for 'Link documents' text
+
     // Execute tracking for buttons immediately after page load
     trackAndClickButtons(); // Call the function to check and click buttons
+
+    // Call the form filler if on the attach.cfm page
+    if (window.location.href.includes("attach.cfm")) {
+        fillForm(); // Fill the form if on the correct page
+    }
 });

@@ -1,31 +1,19 @@
-let autoRefreshIntervals = {}; // To store intervals for each tab
-
+// background.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === "startAutoRefresh") {
-        const { tabId, seconds } = request;
+    if (request.action === "refreshTab") {
+        const urlToRefresh = "https://www.purchasingprogramsaudi.com/common/attach.cfm";
 
-        if (autoRefreshIntervals[tabId]) {
-            clearInterval(autoRefreshIntervals[tabId]); // Clear any existing interval
-        }
-
-        autoRefreshIntervals[tabId] = setInterval(() => {
-            chrome.scripting.executeScript({
-                target: { tabId: tabId },
-                function: () => {
-                    let resources = document.querySelectorAll('img, iframe, script');
-                    resources.forEach(resource => resource.remove());
-                    location.reload();
-                }
-            });
-        }, seconds * 1000); // Convert seconds to milliseconds
-    }
-
-    if (request.action === "stopAutoRefresh") {
-        const { tabId } = request;
-
-        if (autoRefreshIntervals[tabId]) {
-            clearInterval(autoRefreshIntervals[tabId]);
-            delete autoRefreshIntervals[tabId]; // Remove the interval reference
-        }
+        chrome.tabs.query({}, (tabs) => {
+            const tabToRefresh = tabs.find(tab => tab.url === urlToRefresh);
+            if (tabToRefresh) {
+                chrome.tabs.reload(tabToRefresh.id, { bypassCache: true });
+                console.log("Refreshed the tab with URL:", urlToRefresh);
+                sendResponse({ success: true });
+            } else {
+                console.log("No tab found with the URL:", urlToRefresh);
+                sendResponse({ success: false });
+            }
+        });
+        return true; // Indicate that we will send a response asynchronously
     }
 });

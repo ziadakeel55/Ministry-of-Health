@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Ministry of Health",
-  "version": "1.8",
+  "version": "3",
   "description": "Automates actions for the Ministry of Health website",
   "permissions": [
     "activeTab",
